@@ -13,3 +13,10 @@ Os seguintes itens foram usados/criados para o ambiente do projeto:
 - Instancia EC2 (EC2Projeto01) do tipo t3.small, com 1 volume de 16 GiB e um Elastic IP Address associado (52.70.182.61), utiliza a chave ChaveProjeto01.pem disponivel neste repositorio. 
 
 # Ambiente Linux
+A primeira configuracao realizada no terminal da instancia foi a modificacao das permissoes da chave SSH atribuida a instancia, para isso foi usada o seguinte comando:
+
+`chmod 400 ChaveProjeto01.pem` 
+
+Apos feito isso podemos nos conectar a instancia EC2 usando SSH com a chave privada, usando o seguinte comando:
+
+` ssh -i ChaveProjeto01.pem ec2-user@52.70.182.61 `
