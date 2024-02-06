@@ -48,3 +48,35 @@ E para inicializar e permitir o NFS usaremos:
 `sudo systemctl enable nfs-server`
 
 Agora temos o NFS instalado e ativado dentro da nossa instancia EC2.
+
+### Instalando o Apache no servidor
+
+Para instalar o apache usei os seguintes comandos:
+
+`sudo yum install httpd`
+
+Como a instala;ao veio sem o arquivo da pagina inicial do apche, criaremos um html simples dentro do diretorio `/var/www/html` com o nome de `index.html` e daremos as permissoes necessarias para cumprir com esta fun;ao:
+
+`vi /var/www/html/index.html`
+
+`sudo chmod 777 /var/www/html/index.html`
+
+IMAGEM DO HTML AKI
+
+E apos isso podemos iniciar e habilitar o inicio automatico do apache com os comandos:
+
+`sudo systemctl start httpd`
+
+`sudo systemctl enable httpd`
+
+### Cria;ao do script
+
+Tendo como objetivo fazer um historico de logs que registre o status (ativo ou inativo) do servidor apache, criei um script que registra dentro de dois arquivos `apache_logs_ativo.txt` e `apache_logs_inativo.txt` os resultados de uma verifica;'ao de status realizada a cada 5 minutos. 
+
+Neste script usei a linguagem bash, segue seu conteudo abaixo:
+
+IMAGEM DO SCRIPT AKI
+
+
+
+
