@@ -113,3 +113,19 @@ Apos isso, para salvar o arquivo `Esc` -> `:wq` + `Enter`
 
 Agora (11:13-07/02/2024) vou deixar o servidor ligado por um tempo e depois registrarei como ficou os logs registrados pelo script
 
+Apos uns 10 minutos percebi que alguma coisa deu errado com o script, pois nenhum arquivo de log foi criado dentro do diretorio
+
+IMAGEM DO ERRO AKI
+
+O erro foi que o cron foi instalado mas n'ao foi ligado nem "enabled", ent'ao para consertar isso passei os seguintes comandos no terminal:
+
+`sudo systemctl start crond ; sudo systemctl enable crond`
+
+Agora refiz os passos para configurar a automa;ao usando `crontab -e` e vou testar novamente
+
+IMAGEM DO TESTE AKI
+
+
+
+
+
