@@ -121,11 +121,8 @@ O erro foi que o cron foi instalado mas n'ao foi ligado nem "enabled", ent'ao pa
 
 `sudo systemctl start crond ; sudo systemctl enable crond`
 
-Agora refiz os passos para configurar a automa;ao usando `crontab -e` e vou testar novamente
+Agora refiz os passos para configurar a automa;ao usando `crontab -e` e adicionando o comando `bash` em frente ao caminho do arquivo `scriptApache.sh` e vou testar novamente
 
 IMAGEM DO TESTE AKI
 
-
-
-
-
+Com os ajustes feitos anteriormente, o script esta funcionando corretamente e executando automaticamente a cada 5 minutos, enviando a mensagem de `ativo` ou `inativo` para seus respectivos arquivos de log
