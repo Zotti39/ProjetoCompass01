@@ -71,11 +71,33 @@ E apos isso podemos iniciar e habilitar o inicio automatico do apache com os com
 
 ### Cria;ao do script
 
-Tendo como objetivo fazer um historico de logs que registre o status (ativo ou inativo) do servidor apache, criei um script que registra dentro de dois arquivos `apache_logs_ativo.txt` e `apache_logs_inativo.txt` os resultados de uma verifica;'ao de status realizada a cada 5 minutos. 
+Tendo como objetivo fazer um historico de logs que registre o status (ativo ou inativo) do servidor apache, criei um script chamado`scriptApache.sh` dentro do diretorio `/home/ec2-user` que registra dentro de dois arquivos, `apache_logs_ativo.txt` e `apache_logs_inativo.txt` os resultados de uma verifica;'ao de status de atividade do servidor. 
 
 Neste script usei a linguagem bash, segue seu conteudo abaixo:
 
 IMAGEM DO SCRIPT AKI
+
+Com o script comcluido, [e necessario tambem dar permissoes de execu;'ao ao arquivo:
+
+`sudo chmod +x scriptApache.sh`
+
+IMAGEM DO LS AKI
+
+Antes de configurar sua realiza;'ao autimatica de 5 em 5 minutos, realizei um teste para ver se o script est[a criando e armazenando os logs dentro dos arquivos corretamente, utilizando o seguinte comando:
+
+` bash scriptApache.sh `
+
+IMAGEM DO TESTE AKI
+
+Para garantir que a parte que registra o log inativo tambem esta funcionando, eu desliguei manualmente o apache e testei novamente o script, obtendo o seguinte resultado:
+
+IMAGEM DO TESTE AKI
+
+Agora, sabendo que o script est[a funcionando corretamente, podemos passar os comandos que automatizam a realiza;ao do script automaticamente a cada 5 minutos, para isso passaremos os seguintes comando no terminal:
+
+``
+
+
 
 
 
