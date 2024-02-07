@@ -109,3 +109,7 @@ e dentro do arquivo inseri a seguinte linha de comando que automatiza a execu;'a
 
 ` */5 * * * * /home/ec2-user/scriptApache.sh `
 
+Apos isso, para salvar o arquivo `Esc` -> `:wq` + `Enter` 
+
+Agora (11:13-07/02/2024) vou deixar o servidor ligado por um tempo e depois registrarei como ficou os logs registrados pelo script
+
