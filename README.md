@@ -17,7 +17,7 @@ Esta documenta;ao leva em considera;ao que estejamos utilizando uma maquina com 
 
 A primeira configuracao realizada no terminal da instancia foi a modificacao das permissoes da chave SSH atribuida a instancia, para isso foi usada o seguinte comando:
 
-`chmod 400 ChaveProjeto01.pem`
+` chmod 400 ChaveProjeto01.pem `
 
 Apos feito isso podemos nos conectar a instancia EC2 usando SSH com a chave privada, usando o seguinte comando:
 
@@ -25,27 +25,27 @@ Apos feito isso podemos nos conectar a instancia EC2 usando SSH com a chave priv
 
 Para garantir que o sistema esteja atualizado passamos um comando update e upgrade na maquina:
 
-`sudo yum update ; sudo yum upgrade`
+` sudo yum update ; sudo yum upgrade `
 
 ### Instala;'ao do NFS
 
 Com o sistema atualizado e funcionando corretamente, podemos instalar o pacote NFS, para isso usei o seguinte comando:
 
-`sudo yum -y install nfs-utils`
+` sudo yum -y install nfs-utils `
 
 E em seguida criaremos um diretorio com o nome "Gabriel" dentro do FileSystem do NFS, e defiinremos as permissoes deste diretorio, utilizando os seguintes comandos:
 
 `sudo mkdir /mnt/Gabriel`
 
-`cd /Gabriel`
+` cd /Gabriel `
 
-`sudo chmod go+rw .`
+` sudo chmod go+rw . `
 
 E para inicializar e permitir o NFS usaremos:
 
-`sudo systemctl start nfs-server`
+` sudo systemctl start nfs-server `
 
-`sudo systemctl enable nfs-server`
+` sudo systemctl enable nfs-server `
 
 Agora temos o NFS instalado e ativado dentro da nossa instancia EC2.
 
@@ -53,21 +53,21 @@ Agora temos o NFS instalado e ativado dentro da nossa instancia EC2.
 
 Para instalar o apache usei os seguintes comandos:
 
-`sudo yum install httpd`
+` sudo yum install httpd `
 
 Como a instala;ao veio sem o arquivo da pagina inicial do apche, criaremos um html simples dentro do diretorio `/var/www/html` com o nome de `index.html` e daremos as permissoes necessarias para cumprir com esta fun;ao:
 
-`vi /var/www/html/index.html`
+` vi /var/www/html/index.html `
 
-`sudo chmod 777 /var/www/html/index.html`
+` sudo chmod 777 /var/www/html/index.html `
 
 IMAGEM DO HTML AKI
 
 E apos isso podemos iniciar e habilitar o inicio automatico do apache com os comandos:
 
-`sudo systemctl start httpd`
+` sudo systemctl start httpd `
 
-`sudo systemctl enable httpd`
+` sudo systemctl enable httpd `
 
 ### Cria;ao do script
 
@@ -79,7 +79,7 @@ IMAGEM DO SCRIPT AKI
 
 Com o script comcluido, [e necessario tambem dar permissoes de execu;'ao ao arquivo:
 
-`sudo chmod +x scriptApache.sh`
+` sudo chmod +x scriptApache.sh `
 
 IMAGEM DO LS AKI
 
@@ -93,12 +93,19 @@ Para garantir que a parte que registra o log inativo tambem esta funcionando, eu
 
 IMAGEM DO TESTE AKI
 
-Agora, sabendo que o script est[a funcionando corretamente, podemos passar os comandos que automatizam a realiza;ao do script automaticamente a cada 5 minutos, para isso passaremos os seguintes comando no terminal:
+Agora, sabendo que o script est[a funcionando corretamente, podemos passar os comandos que automatizam a realiza;ao do script automaticamente a cada 5 minutos, para isso usaremo um Cron Job, que permite o agendamento de tarefas em servidores Unix/Linux,  passando os seguintes comando no terminal:
 
-``
+Como o crontab n;ao est[a disponivel na maquina ec2, teremos que instala-lo manualmente, usando o seguinte comando:
 
+` sudo yum install cronie `
 
+IMAGEM LOCALIZA;AO DO CRONTAB AKI
 
+Agora podemos configurar a automa;ao do script
 
+` crontab -e `
 
+e dentro do arquivo inseri a seguinte linha de comando que automatiza a execu;'ao do script 
+
+` */5 * * * * /home/ec2-user/scriptApache.sh `
 
