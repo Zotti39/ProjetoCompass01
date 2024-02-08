@@ -19,7 +19,8 @@ A seguir será documentada a criação de um ambiente com os recursos da AWS e a
  
 # 1.Arquitetura do ambiente AWS
 Os seguintes itens foram usados/criados para o ambiente do projeto:
-- 1 VPC (Projeto01-vpc)
+- Chave pública  (ChaveProjeto01)
+- VPC (Projeto01-vpc)
   - 2 Subnets públicas nas AZs us-east-1a e us-east-1b
   - 1 Internet Gateway (Projeto01-igw)
   - 1 Route Table ligando ambas as subnets públicas ao internet gateway
@@ -29,7 +30,8 @@ Os seguintes itens foram usados/criados para o ambiente do projeto:
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(20).png">
   
-- instância EC2 (EC2Projeto01) do tipo t3.small, com 1 volume de 16 GiB e um Elastic IP Address associado (52.70.182.61), utiliza a chave ChaveProjeto01.pem, disponivel neste repositorio. 
+- Instância EC2 (EC2Projeto01) do tipo t3.small, com 1 volume de 16 GiB e um Elastic IP Address associado (52.70.182.61), utiliza a chave `ChaveProjeto01.pem`, disponivel neste repositorio.
+
 <div id='linux'/> 
 
 
