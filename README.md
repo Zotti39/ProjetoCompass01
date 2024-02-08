@@ -9,7 +9,10 @@ Os seguintes itens foram usados/criados para o ambiente do projeto:
   - 2 Subnets publicas nas AZs us-east-1a e us-east-1b
   - 1 Internet Gateway (Projeto01-igw)
   - 1 Route Table ligando ambas as subnets publicas a internet gateway
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(2).png">
+
 - 1 Security Group (SGProjeto01) com as portas 22/TCP, 80/TCP, 443/TCP, 2049/TCP, 2049/UDP, 111/TCP, 111/UDP liberadas para trafego de entrada vindo de qualquer origem, que sera utilizado como firewall da instancia ec2.
+  
 - Instancia EC2 (EC2Projeto01) do tipo t3.small, com 1 volume de 16 GiB e um Elastic IP Address associado (52.70.182.61), utiliza a chave ChaveProjeto01.pem disponivel neste repositorio. 
 
 # Ambiente Linux
@@ -61,7 +64,7 @@ Como a instala;ao veio sem o arquivo da pagina inicial do apche, criaremos um ht
 
 ` sudo chmod 777 /var/www/html/index.html `
 
-IMAGEM DO HTML AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(4).png">
 
 E apos isso podemos iniciar e habilitar o inicio automatico do apache com os comandos:
 
@@ -75,58 +78,56 @@ Tendo como objetivo fazer um historico de logs que registre o status (ativo ou i
 
 Neste script usei a linguagem bash, segue seu conteudo abaixo:
 
-IMAGEM DO SCRIPT AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(8).png">
 
-Com o script comcluido, [e necessario tambem dar permissoes de execu;'ao ao arquivo:
+Com o script concluido, é necessario tambem dar permissoes de execuçãao ao arquivo:
 
 ` sudo chmod +x scriptApache.sh `
 
-IMAGEM DO LS AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(5).png">
 
-Antes de configurar sua realiza;'ao autimatica de 5 em 5 minutos, realizei um teste para ver se o script est[a criando e armazenando os logs dentro dos arquivos corretamente, utilizando o seguinte comando:
+Antes de configurar sua realização autimatica de 5 em 5 minutos, realizei um teste para ver se o script estava criando e armazenando os logs dentro dos arquivos corretamente, utilizando o seguinte comando:
 
 ` bash scriptApache.sh `
 
-IMAGEM DO TESTE AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(10).png">
 
 Para garantir que a parte que registra o log inativo tambem esta funcionando, eu desliguei manualmente o apache e testei novamente o script, obtendo o seguinte resultado:
 
-IMAGEM DO TESTE AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(11).png">
 
-Agora, sabendo que o script est[a funcionando corretamente, podemos passar os comandos que automatizam a realiza;ao do script automaticamente a cada 5 minutos, para isso usaremo um Cron Job, que permite o agendamento de tarefas em servidores Unix/Linux,  passando os seguintes comando no terminal:
+Agora, sabendo que o script esta funcionando corretamente, podemos passar os comandos que automatizam a realização do script automaticamente a cada 5 minutos, para isso usaremo um Cron Job, que permite o agendamento de tarefas em servidores Unix/Linux,  passando os seguintes comando no terminal:
 
-Como o crontab n;ao est[a disponivel na maquina ec2, teremos que instala-lo manualmente, usando o seguinte comando:
+Como o crontab não está disponivel na maquina ec2, teremos que instala-lo manualmente, usando o seguinte comando:
 
 ` sudo yum install cronie `
 
-IMAGEM LOCALIZA;AO DO CRONTAB AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(13).png">
 
-Agora podemos configurar a automa;ao do script
+Agora podemos configurar a automação do script
 
 ` crontab -e `
 
-e dentro do arquivo inseri a seguinte linha de comando que automatiza a execu;'ao do script 
+E dentro do arquivo inseri a seguinte linha de comando que automatiza a execução do script 
 
 ` */5 * * * * /home/ec2-user/scriptApache.sh `
 
 Apos isso, para salvar o arquivo `Esc` -> `:wq` + `Enter` 
 
-Agora (11:13-07/02/2024) vou deixar o servidor ligado por um tempo e depois registrarei como ficou os logs registrados pelo script
+Agora (11:13-07/02/2024) vou deixar o servidor ligado por um tempo e depois mostrarei como ficou os logs registrados pelo script
 
 Apos uns 10 minutos percebi que alguma coisa deu errado com o script, pois nenhum arquivo de log foi criado dentro do diretorio
 
-IMAGEM DO ERRO AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(14).png">
 
-O erro foi que o cron foi instalado mas n'ao foi ligado nem "enabled", ent'ao para consertar isso passei os seguintes comandos no terminal:
+O erro foi que o cron foi instalado mas não foi ligado nem "enabled", então para consertar isso passei os seguintes comandos no terminal:
+
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(15).png">
 
 `sudo systemctl start crond ; sudo systemctl enable crond`
 
-Agora refiz os passos para configurar a automa;ao usando `crontab -e` e adicionando o comando `bash` em frente ao caminho do arquivo `scriptApache.sh` e vou testar novamente
+Agora refiz os passos para configurar a automação usando `crontab -e` e adicionando o comando `bash` em frente ao caminho do arquivo `scriptApache.sh` e vou testar novamente
 
-IMAGEM DO TESTE AKI
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(18).png">
 
 Com os ajustes feitos anteriormente, o script esta funcionando corretamente e executando automaticamente a cada 5 minutos, enviando a mensagem de `ativo` ou `inativo` para seus respectivos arquivos de log
-
-
-
-
