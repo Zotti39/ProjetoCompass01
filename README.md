@@ -36,7 +36,7 @@ Com o sistema atualizado e funcionando corretamente, podemos instalar o pacote N
 
 ` sudo yum -y install nfs-utils `
 
-E em seguida criaremos um diretorio com o nome "Gabriel" dentro do FileSystem do NFS, e definimos as permissoes deste diretorio, utilizando os seguintes comandos:
+E em seguida criaremos um diretório com o nome "Gabriel" dentro do FileSystem do NFS, e definimos as permissoes deste diretório, utilizando os seguintes comandos:
 
 `sudo mkdir /mnt/Gabriel`
 
@@ -58,7 +58,7 @@ Para instalar o apache passamos os seguintes comandos:
 
 ` sudo yum install httpd `
 
-Como a instalação veio sem o arquivo da pagina inicial do apache, criaremos um html simples dentro do diretorio `/var/www/html` com o nome de `index.html` e daremos as permissões necessarias para cumprir com esta função:
+Como a instalação veio sem o arquivo da página inicial do apache, criaremos um html simples dentro do diretorio `/var/www/html` com o nome de `index.html` e daremos as permissões necessarias para cumprir com esta função:
 
 ` vi /var/www/html/index.html `
 
@@ -66,7 +66,7 @@ Como a instalação veio sem o arquivo da pagina inicial do apache, criaremos um
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(4).png">
 
-E após isso podemos iniciar e habilitar o inicio automatico do apache com os comandos:
+E após isso podemos iniciar e habilitar o inicio automático do apache com os comandos:
 
 ` sudo systemctl start httpd `
 
@@ -74,37 +74,37 @@ E após isso podemos iniciar e habilitar o inicio automatico do apache com os co
 
 ### Criação do script
 
-Tendo como objetivo fazer um historico de logs do status de atividade do servidor apache, criamos um script chamado `scriptApache.sh` dentro do diretorio `/home/ec2-user` que registra os resultados da verificação no formato ` data -> ativo/inativo ` e na ultima linha dentro do seu respectivo arquivo, `apache_logs_ativo.txt` ou `apache_logs_inativo.txt` 
+Tendo como objetivo fazer um histórico de logs do status de atividade do servidor apache, criamos um script chamado `scriptApache.sh` dentro do diretório `/home/ec2-user` que registra os resultados da verificação no formato `data -> ativo/inativo` e na ultima linha dentro do seu respectivo arquivo, `apache_logs_ativo.txt` ou `apache_logs_inativo.txt` 
 
 Neste script usamos a linguagem bash, segue seu conteudo abaixo:
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(8).png">
 
-Com o script concluido, é necessario tambem dar permissoes de execução ao arquivo .sh:
+Com o script concluído, é necessário tambem dar permissões de execução ao arquivo .sh:
 
 ` sudo chmod +x scriptApache.sh `
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(5).png">
 
-Antes de configurar sua realização automatica de 5 em 5 minutos, realizei um teste para ver se o script estava criando e armazenando os logs dentro dos arquivos corretamente, utilizando o seguinte comando:
+Antes de configurar sua realização automática de 5 em 5 minutos, realizei um teste para ver se o script estava criando e armazenando os logs dentro dos arquivos corretamente, utilizando o seguinte comando:
 
 ` bash scriptApache.sh `
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(10).png">
 
-Para garantir que a parte que registra o log inativo tambem esta funcionando, eu desliguei manualmente o apache e testei novamente o script, obtendo o seguinte resultado:
+Para garantir que a parte que registra o log inativo tambem está funcionando, eu desliguei manualmente o apache e testei novamente o script, obtendo o seguinte resultado:
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(11).png">
 
-Agora, sabendo que o script está funcionando corretamente, podemos passar os comandos que automatizam a realização do script a cada 5 minutos, para isso usaremo um Cron Job, que permite o agendamento de tarefas em servidores Unix/Linux
+Agora, sabendo que o script está funcionando corretamente, podemos passar os comandos que automatizam a realização do script a cada 5 minutos, para isso usaremos um Cron Job, que permite o agendamento de tarefas em servidores Unix/Linux
 
-Como o crontab não está disponivel na maquina ec2, teremos que instala-lo manualmente, usando o seguinte comando:
+Como o crontab não está disponível na máquina ec2, teremos que instala-lo manualmente, usando o seguinte comando:
 
 ` sudo yum install cronie `
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(13).png">
 
-Tambem é necessario ativar e validar a inicialização automatica do cron, para isso usamos os seguintes comandos:
+Tambem é necessario ativar e validar a inicialização automática do cron, para isso usamos os seguintes comandos:
 
 `sudo systemctl start crond ; sudo systemctl enable crond`
 
@@ -120,6 +120,4 @@ Apos isso, para salvar o arquivo `Esc` -> `:wq` + `Enter`
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(18).png">
 
-Acima vemos o resultado do teste do script, que a cada 5 minutos verificamos o arquivo de logs `apache_logs_ativo.txt` e vemos que uma nova linha foi adicionada a ele informando a hora da verificação e que o servidor estava ativo, assim concluindo com exito o objetivo da atividade.
-
-
+Acima vemos o resultado do teste do script, que a cada 5 minutos verificamos o arquivo de logs `apache_logs_ativo.txt` e vemos que uma nova linha foi adicionada a ele informando a hora da verificação e que o servidor estava ativo, assim concluindo com êxito o objetivo da atividade.
