@@ -1,9 +1,20 @@
 # Primeiro projeto do PB Compass
+
+Tabelas de conteúdo 
+ 1. [Arquitetura do ambiente AWS](#AWS)
+ 2. [Ambiente Linux](#linux)
+ 3. [Ferramentas para Markdown](#)
+ 4. [Sintaxe de Markdown](#)
+
+Este Documento foi atualizado pela ultima vez em 08/02/2024
+
 Este projeto faz parte do programa de bolsas DevSecOps da compass, iniciado em dezembro/2023 e tem como objetivo implementar na prática os conhecimentos adquiridos nesse primeiro mês  e meio de estágio, tempo usado para fazer alguns cursos sobre administração de sistemas linux e uso da Amazon AWS para criação de recursos de computação em nuvem.
 
 A seguir será documentada a criação de um ambiente com os recursos da AWS e a instalação de um sistema linux nesse ambiente
-
+  
 # Arquitetura do ambiente AWS
+<div id='AWS'/> 
+  
 Os seguintes itens foram usados/criados para o ambiente do projeto:
 - 1 VPC (Projeto01-vpc)
   - 2 Subnets públicas nas AZs us-east-1a e us-east-1b
@@ -12,10 +23,14 @@ Os seguintes itens foram usados/criados para o ambiente do projeto:
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(2).png">
 
 - Security Group (SGProjeto01) com as portas 22/TCP, 80/TCP, 443/TCP, 2049/TCP, 2049/UDP, 111/TCP, 111/UDP liberadas para tráfego de entrada vindo de qualquer origem, que será utilizado como firewall da instância ec2.
+
+<img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(20).png">
   
 - instância EC2 (EC2Projeto01) do tipo t3.small, com 1 volume de 16 GiB e um Elastic IP Address associado (52.70.182.61), utiliza a chave ChaveProjeto01.pem, disponivel neste repositorio. 
 
 # Ambiente Linux
+<div id='linux'/> 
+
 Esta documentação leva em consideração que estamos utilizando uma máquina com sistema operacional linux, mas caso voce esteja utilizando windows, o PuTTY pode ser usado como alternativa, e precisará ser instalado e converter a chave de acesso de .pem para .ppk 
 
 A primeira configuração realizada no terminal da instância foi a modificação das permissões da chave SSH atribuída a instância, para isso foi usada o seguinte comando:
@@ -30,7 +45,7 @@ Para garantir que o sistema esteja atualizado passamos um comando update e upgra
 
 ` sudo yum update ; sudo yum upgrade `
 
-### Instalação do NFS
+## Instalação do NFS
 
 Com o sistema atualizado e funcionando corretamente, podemos instalar o pacote NFS, para isso usamos o seguinte comando:
 
@@ -52,7 +67,7 @@ E para inicializar e permitir o NFS usaremos:
 
 Agora temos o NFS instalado e ativado dentro da nossa instancia EC2.
 
-### Instalando o Apache no servidor
+## Instalando o Apache
 
 Para instalar o apache passamos os seguintes comandos:
 
@@ -72,7 +87,7 @@ E após isso podemos iniciar e habilitar o inicio automático do apache com os c
 
 ` sudo systemctl enable httpd `
 
-### Criação do script
+## Criação do script
 
 Tendo como objetivo fazer um histórico de logs do status de atividade do servidor apache, criamos um script chamado `scriptApache.sh` dentro do diretório `/home/ec2-user` que registra os resultados da verificação no formato `data -> ativo/inativo` e na ultima linha dentro do seu respectivo arquivo, `apache_logs_ativo.txt` ou `apache_logs_inativo.txt` 
 
@@ -95,6 +110,8 @@ Antes de configurar sua realização automática de 5 em 5 minutos, realizei um 
 Para garantir que a parte que registra o log inativo tambem está funcionando, eu desliguei manualmente o apache e testei novamente o script, obtendo o seguinte resultado:
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(11).png">
+
+## Automatização do script
 
 Agora, sabendo que o script está funcionando corretamente, podemos passar os comandos que automatizam a realização do script a cada 5 minutos, para isso usaremos um Cron Job, que permite o agendamento de tarefas em servidores Unix/Linux
 
