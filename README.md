@@ -99,11 +99,9 @@ Como a instalação veio sem o arquivo da página inicial do apache, criaremos u
 
 <img src="https://github.com/Zotti39/ProjetoCompass01/blob/main/Screenshots/Captura%20de%20Tela%20(4).png">
 
-E após isso podemos iniciar e habilitar o inicio automático do apache com os comandos:
+E após isso podemos iniciar e habilitar o início automático do apache com os comandos:
 
-    sudo systemctl start httpd 
-######
-    sudo systemctl enable httpd 
+    sudo systemctl start httpd ; sudo systemctl enable httpd 
 <div id='script'/> 
  
 ## - Criação do script
