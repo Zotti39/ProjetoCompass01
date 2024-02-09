@@ -8,7 +8,7 @@
     -  [Criação do script](#script)
     -  [Automatização do script](#automatizacao)
 
-_Este Documento foi atualizado pela ultima vez em 08/02/2024_
+_Este Documento foi atualizado pela ultima vez em 08/02/2024 por Gabriel Zotti Zanatta_
 
 Este projeto faz parte do programa de bolsas DevSecOps da compass, iniciado em dezembro/2023 e tem como objetivo implementar na prática os conhecimentos adquiridos nesse primeiro mês  e meio de estágio, tempo usado para fazer alguns cursos sobre administração de sistemas linux e uso da Amazon AWS para criação de recursos de computação em nuvem
 
