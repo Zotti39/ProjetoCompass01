@@ -106,7 +106,7 @@ E após isso podemos iniciar e habilitar o início automático do apache com os 
  
 ## - Criação do script
 
-Tendo como objetivo fazer um histórico de logs do status de atividade do servidor apache, criamos um script chamado `scriptApache.sh` dentro do diretório `/home/ec2-user` que registra os resultados da verificação no formato `data -> ativo/inativo` e na ultima linha dentro do seu respectivo arquivo, `apache_logs_ativo.txt` ou `apache_logs_inativo.txt` 
+Tendo como objetivo fazer um histórico de logs do status de atividade do servidor apache, criamos um script chamado `scriptApache.sh` dentro do diretório `/home/ec2-user` que registra os resultados da verificação no formato `data -> ativo/inativo` na ultima linha dentro do seu respectivo arquivo, `apache_logs_ativo.txt` ou `apache_logs_inativo.txt` 
 
 Neste script usamos a linguagem bash, segue seu conteudo abaixo:
 
